@@ -1,4 +1,4 @@
-package baekjoon1978;
+package baekjoon1987;
 import java.util.Scanner;
 public class Main {
 
