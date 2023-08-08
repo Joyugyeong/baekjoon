@@ -2,43 +2,27 @@
 import java.io.*;
 import java.util.*;
 public class Main {
+static int [] dp;
+static int [] arr;
+static int MOD = 1000000000;
 
-	static Integer dp [];
-	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int N = Integer.parseInt(br.readLine());
+//		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		dp = new Integer[N+1];
+		int X = Integer.parseInt(br.readLine());
+		
+		dp = new int[X+1];
 		dp[0] = dp[1] = 0;
 		
-		System.out.print(recur(N));
-		
-	}
-	
-	static int recur(int N) {
-		if(dp[N] == null) {
-			
-			if(N % 6 == 0) {
-				dp[N] = Math.min(recur(N-1),Math.min(recur(N/3), recur(N/2))) + 1;
-	
-			}
-			else if(N % 3 == 0) {
-				dp[N] = Math.min(recur(N/3), recur(N-1)) + 1;
-				
-			}
-			else if(N % 2 == 0) {
-				dp[N] = Math.min(recur(N/2), recur(N-1)) + 1;
-				
-			}
-			else {
-				dp[N] = recur(N-1) + 1;
-			}
-			
+		for(int i = 2 ; i<= X ; i++) {
+			dp[i] = dp[i-1]+1;
+			if(i % 2 == 0) dp[i] = Math.min(dp[i], dp[i/2] + 1);
+			if(i % 3 == 0) dp[i] = Math.min(dp[i], dp[i/3] + 1);
 		}
-		return dp[N];
+		System.out.println(dp[X]);
 	}
+	
 }
-
